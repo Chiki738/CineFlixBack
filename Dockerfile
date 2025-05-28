@@ -1,5 +1,14 @@
+# Imagen base con Java 21
 FROM eclipse-temurin:21-jdk
+
+# Directorio de trabajo dentro del contenedor
 WORKDIR /app
-COPY target/CineFlixBack-0.0.1-SNAPSHOT.jar app.jar
-EXPOSE 8080
-CMD ["java", "-jar", "app.jar"]
+
+# Copiar todos los archivos del proyecto
+COPY . .
+
+# Construir el proyecto con Maven (salta los tests para más velocidad)
+RUN ./mvnw clean package -DskipTests
+
+# Ejecutar el .jar generado
+CMD ["java", "-jar", "target/api-0.0.1-SNAPSHOT.jar"]
