@@ -12,4 +12,4 @@ RUN chmod +x mvnw
 RUN ./mvnw clean package -DskipTests
 
 # Ejecutar el .jar generado
-CMD ["java", "-jar", "target/api-0.0.1-SNAPSHOT.jar"]
+CMD ["sh", "-c", "java -jar target/api-0.0.1-SNAPSHOT.jar --server.port=$PORT"]
