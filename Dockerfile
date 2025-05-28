@@ -8,6 +8,7 @@ WORKDIR /app
 COPY . .
 
 # Construir el proyecto con Maven (salta los tests para más velocidad)
+RUN chmod +x mvnw
 RUN ./mvnw clean package -DskipTests
 
 # Ejecutar el .jar generado
